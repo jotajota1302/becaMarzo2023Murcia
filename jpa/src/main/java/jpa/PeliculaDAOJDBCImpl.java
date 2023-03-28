@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class PeliculaDAOJDBCImpl implements PeliculaDAO {
 
@@ -61,6 +62,11 @@ public class PeliculaDAOJDBCImpl implements PeliculaDAO {
 
 	public void delete(Pelicula pelicula) {
 
+	}
+
+	public List<?> readAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,7 +1,10 @@
 package jpa;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class PeliculaDAOJPAImpl implements PeliculaDAO {
 
@@ -12,6 +15,15 @@ public class PeliculaDAOJPAImpl implements PeliculaDAO {
 	public Pelicula read(int id) {
 
 		return manager.find(Pelicula.class, id);
+	}
+
+	// READ ALL
+
+	public List<?> readAll() {
+
+		Query query = manager.createQuery("FROM Pelicula");
+		return query.getResultList();
+
 	}
 
 	// CREATE
