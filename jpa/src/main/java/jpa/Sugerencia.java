@@ -2,6 +2,7 @@ package jpa;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ public class Sugerencia {
 	@Column
 	private String descripcion;
 	
-	@ManyToMany(mappedBy = "sugerencias")
+	@ManyToMany(mappedBy = "sugerencias",cascade = CascadeType.ALL)
 	private List<Usuario> usuarios;
 
 	public int getId() {

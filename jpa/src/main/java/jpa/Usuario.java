@@ -2,8 +2,10 @@ package jpa;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -24,13 +26,10 @@ public class Usuario {
 	@Column
 	private String password;
 	
-	@Column
-	private int direccion;	
-	
 	@OneToMany(mappedBy = "usuario")
 	private List<Tarjeta> tarjetas;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "usuario_sugerencias",joinColumns = @JoinColumn(name = "dni"), inverseJoinColumns = @JoinColumn(name="id"))
 	private List<Sugerencia> sugerencias;
 
@@ -58,14 +57,14 @@ public class Usuario {
 		this.password = password;
 	}
 
-	public int getDireccion() {
-		return direccion;
+	public List<Tarjeta> getTarjetas() {
+		return tarjetas;
 	}
 
-	public void setDireccion(int direccion) {
-		this.direccion = direccion;
+	public void setTarjetas(List<Tarjeta> tarjetas) {
+		this.tarjetas = tarjetas;
 	}
-	
+
 	public List<Sugerencia> getSugerencias() {
 		return sugerencias;
 	}
@@ -74,13 +73,6 @@ public class Usuario {
 		this.sugerencias = sugerencias;
 	}
 
-	public List<Tarjeta> getTarjetas() {
-		return tarjetas;
-	}
-
-	public void setTarjetas(List<Tarjeta> tarjetas) {
-		this.tarjetas = tarjetas;
-	}
 	
 	
 	

@@ -1,5 +1,8 @@
 package jpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
@@ -12,20 +15,41 @@ public class Main {
 		
 		Usuario user = manager.find(Usuario.class, "12345678A");
 		
-		System.out.println(user);
+		System.out.println(user.getSugerencias());
 
-		//TABLA USER - ID,NOMBRE,MAIL
-		//TABLA PASSWORD ID,NOMBRE,VALIDEZ
-		//TABLA AFICIONES ID,DESCRIPCION
-		//RELACION 1-1 con USER-PASSWORD
+		//LAZY no hace la query hasta que no se necesita ese dato
+				
+		//SELECT - FETCH 
+						
+		//INSERT
+
+		//recupero un usuario
 		
-		//Recuperar un usuario por ID y poder consultar su PW
+		user=manager.find(Usuario.class,"87654321A");
 		
-		//RELACION 1-N entre user y aficiones
+		List<Sugerencia> sugerencias=new ArrayList<Sugerencia>();
 		
-		//Recuperar un usuario y ver que tiene 2 aficiones por lo menos 
+		List<Usuario> usuarios=new ArrayList<Usuario>();
+		usuarios.add(user);
 		
-		//N-N con usuario
+		Sugerencia s1=new Sugerencia();
+		s1.setDescripcion("AMOR");
+		s1.setUsuarios(usuarios);	
+		s1.setUsuarios(usuarios);
+		
+		Sugerencia s2=new Sugerencia();
+		s2.setUsuarios(usuarios);
+		s2.setDescripcion("ACCION");
+		
+		sugerencias.add(s1);
+		sugerencias.add(s2);
+		
+		user.setSugerencias(sugerencias);		
+		
+		manager.getTransaction().begin();
+		manager.merge(user);
+		manager.getTransaction().commit();
+		
 		
 	}
 
