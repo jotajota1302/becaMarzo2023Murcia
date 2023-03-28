@@ -5,8 +5,10 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,10 +25,14 @@ public class Usuario {
 	private String password;
 	
 	@Column
-	private int direccion;
+	private int direccion;	
 	
 	@OneToMany(mappedBy = "usuario")
 	private List<Tarjeta> tarjetas;
+	
+	@ManyToMany
+	@JoinTable(name = "usuario_sugerencias",joinColumns = @JoinColumn(name = "dni"), inverseJoinColumns = @JoinColumn(name="id"))
+	private List<Sugerencia> sugerencias;
 
 	public String getDni() {
 		return dni;
@@ -59,6 +65,14 @@ public class Usuario {
 	public void setDireccion(int direccion) {
 		this.direccion = direccion;
 	}
+	
+	public List<Sugerencia> getSugerencias() {
+		return sugerencias;
+	}
+
+	public void setSugerencias(List<Sugerencia> sugerencias) {
+		this.sugerencias = sugerencias;
+	}
 
 	public List<Tarjeta> getTarjetas() {
 		return tarjetas;
@@ -67,7 +81,7 @@ public class Usuario {
 	public void setTarjetas(List<Tarjeta> tarjetas) {
 		this.tarjetas = tarjetas;
 	}
-
+	
 	
 	
 	
