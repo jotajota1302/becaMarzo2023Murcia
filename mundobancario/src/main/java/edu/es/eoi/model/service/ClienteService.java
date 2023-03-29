@@ -17,17 +17,26 @@ public class ClienteService {
 	
 	public void alta(String dni,String nombre,String direccion) {
 		
-		//crear un cliente
-		
 		Cliente cliente= new Cliente();
 		cliente.setDni(dni);
 		cliente.setDireccion(direccion);
 		cliente.setNombre(nombre);
 		cliente.setFechaAlta(Calendar.getInstance().getTime());
 		
-		//guardar
-		
+			
 		dao.create(cliente);
+		
+	}
+	
+	public Cliente consulta(String dni) {
+		
+		return dao.find(dni);
+		
+	}
+	
+	public void borrar(String dni) {
+		
+		dao.borrar(dao.find(dni));
 		
 	}
 
