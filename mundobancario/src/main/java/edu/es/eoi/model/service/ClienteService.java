@@ -1,5 +1,7 @@
 package edu.es.eoi.model.service;
 
+import java.util.Calendar;
+
 import edu.es.eoi.model.dao.ClienteDAO;
 import edu.es.eoi.model.entity.Cliente;
 
@@ -21,6 +23,7 @@ public class ClienteService {
 		cliente.setDni(dni);
 		cliente.setDireccion(direccion);
 		cliente.setNombre(nombre);
+		cliente.setFechaAlta(Calendar.getInstance().getTime());
 		
 		//guardar
 		
