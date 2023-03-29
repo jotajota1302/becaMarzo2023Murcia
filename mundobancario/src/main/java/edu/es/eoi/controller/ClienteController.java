@@ -1,13 +1,14 @@
 package edu.es.eoi.controller;
 
 import edu.es.eoi.model.service.ClienteService;
+import edu.es.eoi.model.service.ClienteServiceImpl;
 import edu.es.eoi.view.ClienteView;
 
 public class ClienteController {
 
 	// validar los datos de entrada/salida y controlan la navegacion
 
-	private ClienteService service = new ClienteService();
+	private ClienteService service = new ClienteServiceImpl();
 
 	public static void seleccionarOpcionMenu(int opcion) {
 

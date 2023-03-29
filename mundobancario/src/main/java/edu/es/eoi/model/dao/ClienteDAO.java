@@ -13,7 +13,7 @@ public class ClienteDAO {
 
 	
 	public void create(Cliente cliente) {
-
+		
 		manager.getTransaction().begin();
 		manager.persist(cliente);
 		manager.getTransaction().commit();
