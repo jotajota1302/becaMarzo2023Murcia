@@ -3,7 +3,6 @@ package edu.es.eoi.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,11 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import edu.es.eoi.model.Product;
 
-@Controller
+@RestController
 @RequestMapping("/products")
 public class ProductController {
 
@@ -26,7 +25,7 @@ public class ProductController {
 
 	// GET /products --> Devolver todos los productos
 	@GetMapping
-	public @ResponseBody List<Product> getAllProducts() {
+	public List<Product> getAllProducts() {
 
 		Product product1 = new Product();
 		product1.setCode("AAAAAAA");
@@ -49,7 +48,7 @@ public class ProductController {
 
 	// GET /products/ID --> Devolver el producto con ese ID
 	@GetMapping("/{code}")
-	public @ResponseBody Product findProduct(@PathVariable String code) {
+	public Product findProduct(@PathVariable String code) {
 
 		Product product1 = new Product();
 		product1.setCode(code);
@@ -61,7 +60,7 @@ public class ProductController {
 
 	// POST /products --> Crear un nuevo producto
 	@PostMapping
-	public @ResponseBody String createProduct(@RequestBody Product product) {
+	public String createProduct(@RequestBody Product product) {
 
 		// llamar al servicio de guardado
 
@@ -73,7 +72,7 @@ public class ProductController {
 
 	// PUT /products/ID --> Actualizar el elemento existente
 	@PutMapping("/{code}")
-	public @ResponseBody String updateProduct(@RequestBody Product product, @PathVariable String code) {
+	public String updateProduct(@RequestBody Product product, @PathVariable String code) {
 
 		// llamaria al servicio de update
 
@@ -82,7 +81,7 @@ public class ProductController {
 	}
 
 	@DeleteMapping
-	public @ResponseBody String deleteAllProducts() {
+	public String deleteAllProducts() {
 
 		// ESTO LO DEBERIA HACER UN SERVICIO
 
@@ -92,7 +91,7 @@ public class ProductController {
 
 	// GET /products/ID --> Devolver el producto con ese ID
 	@DeleteMapping("/{code}")
-	public @ResponseBody String deleteProduct(@PathVariable String code) {
+	public String deleteProduct(@PathVariable String code) {
 
 		// ESTO LO DEBERIA HACER UN SERVICIO
 
