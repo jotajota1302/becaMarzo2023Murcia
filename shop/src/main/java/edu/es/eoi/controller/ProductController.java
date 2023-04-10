@@ -3,6 +3,8 @@ package edu.es.eoi.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,13 +50,14 @@ public class ProductController {
 
 	// GET /products/ID --> Devolver el producto con ese ID
 	@GetMapping("/{code}")
-	public Product findProduct(@PathVariable String code) {
+	public ResponseEntity<?> findProduct(@PathVariable String code) {
 
 		Product product1 = new Product();
 		product1.setCode(code);
 		product1.setName("XXXXX");
-
-		return product1;
+	
+		
+		return  new ResponseEntity<Product>(product1,HttpStatus.OK);
 
 	}
 
