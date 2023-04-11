@@ -14,10 +14,8 @@ public class ClienteSaldoDto {
 	private String dni;
 		
 	private String nombre;	
-	
-	
+		
 	private double saldo;
-	
 	
 	
 	
