@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.es.eoi.entity.Cliente;
+import edu.es.eoi.dto.ClienteDto;
 import edu.es.eoi.service.ClienteService;
 
 @RestController
@@ -21,10 +21,10 @@ public class ClienteController {
 	ClienteService clienteService;
 
 	@GetMapping("/{dni}")
-	public ResponseEntity<Cliente> findCliente(@PathVariable String dni) {
+	public ResponseEntity<ClienteDto> findCliente(@PathVariable String dni) {
 
 		try {		
-			return new ResponseEntity<Cliente>(clienteService.findCliente(dni), HttpStatus.OK);
+			return new ResponseEntity<ClienteDto>(clienteService.findCliente(dni), HttpStatus.OK);
 
 		} catch (Exception e) {
 
@@ -34,7 +34,7 @@ public class ClienteController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> createCliente(@RequestBody Cliente cliente) {
+	public ResponseEntity<?> createCliente(@RequestBody ClienteDto cliente) {
 
 		try {
 

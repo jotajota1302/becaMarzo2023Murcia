@@ -51,7 +51,6 @@ public class Cliente {
 	@Temporal(TemporalType.DATE)
 	private Date nacimiento;
 	
-	
 	@OneToMany(mappedBy = "cliente" , fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Cuenta> cuentas;
 
