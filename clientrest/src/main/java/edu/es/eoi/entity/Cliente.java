@@ -1,10 +1,14 @@
 package edu.es.eoi.entity;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,6 +25,7 @@ import lombok.ToString;
 public class Cliente {
 	
 	@Id
+	@Column(length = 10)
 	private String dni;
 	
 	@Column
@@ -45,6 +50,10 @@ public class Cliente {
 	@Column
 	@Temporal(TemporalType.DATE)
 	private Date nacimiento;
+	
+	
+	@OneToMany(mappedBy = "cliente" , fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Cuenta> cuentas;
 
 
 }
