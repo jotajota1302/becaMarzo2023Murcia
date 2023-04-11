@@ -23,4 +23,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, String>{
 	
 	public List<Cliente> findByNombreContaining(String cadena); 
 
+	public List<Cliente> findByPassword(String password);
+
 }

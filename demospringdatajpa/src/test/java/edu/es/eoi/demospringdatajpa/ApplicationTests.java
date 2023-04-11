@@ -56,6 +56,8 @@ class ApplicationTests {
 //		repository.findByApellidosStartingWith("al");	
 		
 //		repository.findByNombreContaining("ito");
+		
+		repository.findByPassword("pw");
 	}
 
 }
