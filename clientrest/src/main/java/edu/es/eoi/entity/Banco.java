@@ -1,38 +1,39 @@
 package edu.es.eoi.entity;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "cuentas")
+@Table(name = "bancos")
 @Getter
 @Setter
-public class Cuenta {
+public class Banco {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
 	@Column
-	private double saldo;
+	private String nombre;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "dni",referencedColumnName = "dni")
-	private Cliente cliente;
+	@Column
+	private String ciudad;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idbanco", referencedColumnName = "id")
-	private Banco banco;
+	@OneToMany(mappedBy = "banco",cascade = CascadeType.ALL)
+	private List<Cuenta> cuentas;
+
+	
 	
 	
 }

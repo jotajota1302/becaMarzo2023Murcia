@@ -1,14 +1,11 @@
 package edu.es.eoi.service;
 
-import java.util.List;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.es.eoi.dto.ClienteDto;
 import edu.es.eoi.entity.Cliente;
-import edu.es.eoi.entity.Cuenta;
 import edu.es.eoi.repository.ClienteRepository;
 
 @Service
@@ -24,17 +21,20 @@ public class ClienteService {
 		ClienteDto dto = new ClienteDto();
 
 		BeanUtils.copyProperties(cliente, dto);
-
-		List<Cuenta> cuentas = cliente.getCuentas();
-
-		double saldo = 0.0;
-
-		for (Cuenta cuenta : cuentas) {
-			saldo = saldo + cuenta.getSaldo();
-		}
 		
-		dto.setSaldo(saldo);
-
+		dto.setNombre(dto.getNombre().toUpperCase());
+		dto.setApellidos(dto.getApellidos().toUpperCase());
+		
+		//		List<Cuenta> cuentas = cliente.getCuentas();
+//
+//		double saldo = 0.0;
+//
+//		for (Cuenta cuenta : cuentas) {
+//			saldo = saldo + cuenta.getSaldo();
+//		}
+//		
+//		dto.setSaldo(saldo);
+			
 		return dto;
 
 	}
@@ -48,5 +48,7 @@ public class ClienteService {
 		clienteRepository.save(entidad);
 
 	}
+	
+	
 
 }
