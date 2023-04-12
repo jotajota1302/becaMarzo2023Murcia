@@ -1,10 +1,13 @@
 package edu.es.eoi.service;
 
+import java.util.Calendar;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.es.eoi.dto.ClienteDto;
+import edu.es.eoi.dto.CreateClienteDto;
 import edu.es.eoi.entity.Cliente;
 import edu.es.eoi.repository.ClienteRepository;
 
@@ -24,27 +27,19 @@ public class ClienteService {
 		
 		dto.setNombre(dto.getNombre().toUpperCase());
 		dto.setApellidos(dto.getApellidos().toUpperCase());
-		
-		//		List<Cuenta> cuentas = cliente.getCuentas();
-//
-//		double saldo = 0.0;
-//
-//		for (Cuenta cuenta : cuentas) {
-//			saldo = saldo + cuenta.getSaldo();
-//		}
-//		
-//		dto.setSaldo(saldo);
-			
+
 		return dto;
 
 	}
 
-	public void createCliente(ClienteDto cliente) {
+	public void createCliente(CreateClienteDto cliente) {
 
 		Cliente entidad = new Cliente();
 
 		BeanUtils.copyProperties(cliente, entidad);
 
+		entidad.setAlta(Calendar.getInstance().getTime());
+		
 		clienteRepository.save(entidad);
 
 	}
