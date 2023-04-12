@@ -1,5 +1,7 @@
 package edu.es.eoi.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,14 @@ public class BancoController {
 
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
+
+	}
+	
+	@GetMapping()
+	public ResponseEntity<?> findAll() {
+	
+		return new ResponseEntity<List<BancoDto>>(bancoService.findAll(), HttpStatus.OK);
+
 
 	}
 

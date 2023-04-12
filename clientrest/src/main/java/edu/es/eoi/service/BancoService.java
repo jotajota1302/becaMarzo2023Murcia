@@ -1,5 +1,8 @@
 package edu.es.eoi.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +28,21 @@ public class BancoService {
 
 		return dto;
 
+	}
+	
+	public List<BancoDto> findAll(){
+		
+		List<Banco> bancos = bancoRepository.findAll();
+		
+		List<BancoDto> dtos=new ArrayList<BancoDto>();
+		
+		for (Banco b : bancos) {			
+			BancoDto temp= new BancoDto();
+			BeanUtils.copyProperties(b, temp);
+			dtos.add(temp);
+		}
+				
+		return dtos;
 	}
 
 	public void createBanco(CreateBancoDto banco) {
