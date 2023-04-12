@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.es.eoi.dto.CreateCuentaDto;
+import edu.es.eoi.dto.CuentaDto;
 import edu.es.eoi.entity.Banco;
 import edu.es.eoi.entity.Cliente;
 import edu.es.eoi.entity.Cuenta;
@@ -23,6 +24,22 @@ public class CuentaService {
 	
 	@Autowired
 	CuentaRepository cuentaRepository; 
+	
+	
+	public CuentaDto findCuenta(Integer id) {
+		
+		Cuenta cuenta=cuentaRepository.findById(id).get();
+			
+		CuentaDto dto= new CuentaDto();
+		dto.setSaldo(cuenta.getSaldo());
+		dto.setBanco(cuenta.getBanco().getNombre());
+		dto.setCiudad(cuenta.getBanco().getCiudad());
+		dto.setNombre(cuenta.getCliente().getNombre());
+		dto.setApellidos(cuenta.getCliente().getApellidos());
+		
+		return dto;
+		
+	}
 	
 	@Transactional
 	public void createCuenta(CreateCuentaDto dto) {
