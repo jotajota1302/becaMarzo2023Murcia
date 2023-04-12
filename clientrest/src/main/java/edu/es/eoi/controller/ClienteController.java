@@ -1,5 +1,7 @@
 package edu.es.eoi.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +39,7 @@ public class ClienteController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> createCliente(@RequestBody CreateClienteDto cliente) {
+	public ResponseEntity<?> createCliente(@RequestBody @Valid CreateClienteDto cliente) {
 
 		try {
 
