@@ -26,6 +26,8 @@ public class ClientRestController {
 		
 		BancoDto devolucion = template.getForObject("http://localhost:8082/bancos/".concat(id), BancoDto.class);
 		
+//		Object respuesta = template.getForObject("https://swapi.dev/api/people/".concat(id), Object.class);
+				
 		return devolucion;
 		
 		
